@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken');
 
+// create new user 
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
@@ -16,6 +17,7 @@ exports.signup = (req, res, next) => {
     })
     .catch(error => res.status(500).json({error}))
 }
+// log user into app 
 exports.login = (req, res, next) => {
     User.findOne({username: req.body.username})
         .then(user => {
@@ -47,3 +49,10 @@ exports.login = (req, res, next) => {
             res.status(500).json({error})
         })
 }
+// list all users and their roles 
+exports.usersList = (req, res, next) => {
+    User.find()
+      .then(users => res.status(200).json(users))
+      .catch(error => res.status(400).json({ error }));
+}
+// delete a user

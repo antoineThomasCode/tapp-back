@@ -21,7 +21,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/api/client', clientRoutes)
+// authentification route
 app.use('/api/auth', userRoutes)
+
+//collections routes
+app.use('/api/clients', clientRoutes)
 
 module.exports = app;

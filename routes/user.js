@@ -6,5 +6,6 @@ const userCtrl = require('../controllers/user')
 
 router.post('/signup', userCtrl.signup)
 router.post('/login', userCtrl.login)
+router.get('/userList', userCtrl.usersList)
 
 module.exports = router 
